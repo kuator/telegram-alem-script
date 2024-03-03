@@ -12,6 +12,9 @@ import requests
 from pyrogram.methods.users import send_story
 import asyncio
 from pyrogram import Client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 connection = sqlite3.connect('db/my_database.db')
 cursor = connection.cursor()
