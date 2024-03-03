@@ -7,7 +7,7 @@ volumes:
 name: script
 
 services:
-  alem_script:
+  script:
     container_name: script
     command: python main.py
     env_file:
