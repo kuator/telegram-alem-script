@@ -1,0 +1,17 @@
+version: '3'
+
+
+volumes:
+  db:
+
+services:
+  alem_script:
+    container_name: script
+    command: python main.py
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./db:/app/db
