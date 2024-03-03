@@ -4,6 +4,8 @@ version: '3'
 volumes:
   db:
 
+name: script
+
 services:
   alem_script:
     container_name: script

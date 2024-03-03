@@ -33,9 +33,10 @@ story_text=os.getenv('story_text')
 chat_id=os.getenv('chat_id')
 story_caption=os.getenv('story_caption')
 channel=os.getenv('channel')
+me=os.getenv('me')
 
 async def new_daily_posts(app:Client):
-    response = app.get_chat_history(channel, limit=1)
+    response = app.get_chat_history(channel, limit=2)
     daily_mic_posts = set()
     # new_daily_mic_posts = set()
     async for post in response:
@@ -53,7 +54,7 @@ async def new_daily_posts(app:Client):
 
 async def process_daily_posts(app: Client, daily_posts):
 
-    response = app.get_chat_history(channel, limit=1)
+    response = app.get_chat_history(channel, limit=2)
 
     async for post in response:
         if post.id not in daily_posts:
@@ -76,7 +77,7 @@ async def process_daily_posts(app: Client, daily_posts):
         with open(filename, 'wb') as writer:
             writer.write(file_bytes)
 
-        result = await app.get_users("bigchungusgaming")
+        result = await app.get_users(me)
         am_i_premium = result.is_premium
 
         await asyncio.sleep(2)
