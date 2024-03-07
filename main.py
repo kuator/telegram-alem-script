@@ -39,11 +39,11 @@ channel=os.getenv('channel')
 me=os.getenv('me')
 
 async def new_daily_posts(app:Client):
-    response = app.get_chat_history(channel, limit=2)
+    response = app.get_chat_history(channel, limit=1)
     daily_mic_posts = set()
     # new_daily_mic_posts = set()
     async for post in response:
-        print(post)
+        print(post.id)
         if post.caption and 'дневной микрофон' in post.caption.lower():
             daily_mic_posts.add(post.id)
 
@@ -57,11 +57,15 @@ async def new_daily_posts(app:Client):
 
 async def process_daily_posts(app: Client, daily_posts):
 
-    response = app.get_chat_history(channel, limit=2)
+    response = app.get_chat_history(channel, limit=1)
 
     async for post in response:
         if post.id not in daily_posts:
             continue
+        
+        print('new daily post')
+        print(post)
+        print('new daily post')
 
         file_id = post.document.file_id
         mimetype = post.document.mime_type
