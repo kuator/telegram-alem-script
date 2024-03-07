@@ -87,7 +87,7 @@ async def process_daily_posts(app: Client, daily_posts):
         result = await app.get_users(me)
         am_i_premium = result.is_premium
 
-        await asyncio.sleep(2)
+        # await asyncio.sleep(2)
 
         if not am_i_premium:
             img = Image.open(filename)
@@ -110,9 +110,9 @@ async def main():
         while True:
             daily_posts = await new_daily_posts(app)
             if not daily_posts:
-                await asyncio.sleep(5)
+                await asyncio.sleep(10)
                 continue
             await process_daily_posts(app, daily_posts)
-            await asyncio.sleep(5)
+            await asyncio.sleep(10)
 asyncio.run(main())
 
